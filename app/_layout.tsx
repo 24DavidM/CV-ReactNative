@@ -7,7 +7,7 @@ export default function RootLayout() {
       <Stack 
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#3498db',
+            backgroundColor: '#30319bff',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -18,7 +18,7 @@ export default function RootLayout() {
         <Stack.Screen 
           name="index" 
           options={{
-            title: 'Crear CV',
+            title: 'Crear tu propio CV',
             headerShown: true,
           }} 
         />

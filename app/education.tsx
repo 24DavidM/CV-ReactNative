@@ -1,5 +1,3 @@
-// app/education.tsx
-
 import React, { useState } from "react";
 import {
     View,
@@ -25,13 +23,46 @@ export default function EducationScreen() {
         field: "",
         graduationYear: "",
     });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
     const handleAdd = () => {
-        if (!formData.institution || !formData.degree) {
-            Alert.alert("Error", "Por favor completa al menos institución y título");
+        const newErrors: { [key: string]: string } = {};
+
+        // Institución
+        if (!formData.institution.trim()) {
+            newErrors.institution = "La institución es obligatoria.";
+        } else if (/\d/.test(formData.institution)) {
+            newErrors.institution = "La institución no debe contener números.";
+        }
+
+        // Título/Grado
+        if (!formData.degree.trim()) {
+            newErrors.degree = "El título o grado es obligatorio.";
+        } else if (/\d/.test(formData.degree)) {
+            newErrors.degree = "El título no debe contener números.";
+        }
+
+        // Área de estudio
+        if (formData.field.trim() && /\d/.test(formData.field)) {
+            newErrors.field = "El área de estudio no debe contener números.";
+        }
+
+        // Año de graduación
+        if (formData.graduationYear.trim()) {
+            const yearRegex = /^\d{4}$/;
+            if (!yearRegex.test(formData.graduationYear)) {
+                newErrors.graduationYear = "Debe ser un año válido de 4 dígitos (ej: 2024).";
+            }
+        }
+
+        // Si hay errores, mostrar
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            Alert.alert("Error", "Corrige los campos marcados.");
             return;
         }
 
+        // Si todo está bien
         const newEducation: Education = {
             id: Date.now().toString(),
             ...formData,
@@ -46,7 +77,7 @@ export default function EducationScreen() {
             field: "",
             graduationYear: "",
         });
-
+        setErrors({}); // limpiar errores
         Alert.alert("Éxito", "Educación agregada correctamente");
     };
 
@@ -67,39 +98,43 @@ export default function EducationScreen() {
                 <Text style={styles.sectionTitle}>Agregar Nueva Educación</Text>
 
                 <InputField
-                    label="Institución *"
+                    label="🎓 Institución *"
                     placeholder="Nombre de la universidad/institución"
                     value={formData.institution}
                     onChangeText={(text) =>
                         setFormData({ ...formData, institution: text })
                     }
+                    error={errors.institution}
                 />
 
                 <InputField
-                    label="Título/Grado *"
+                    label="📜 Título/Grado *"
                     placeholder="Ej: Licenciatura, Maestría"
                     value={formData.degree}
                     onChangeText={(text) => setFormData({ ...formData, degree: text })}
+                    error={errors.degree}
                 />
 
                 <InputField
-                    label="Área de Estudio"
+                    label="🧑‍🎓 Área de Estudio"
                     placeholder="Ej: Ingeniería en Sistemas"
                     value={formData.field}
                     onChangeText={(text) => setFormData({ ...formData, field: text })}
+                    error={errors.field}
                 />
 
                 <InputField
-                    label="Año de Graduación"
+                    label="📅 Año de Graduación"
                     placeholder="Ej: 2023"
                     value={formData.graduationYear}
                     onChangeText={(text) =>
                         setFormData({ ...formData, graduationYear: text })
                     }
                     keyboardType="numeric"
+                    error={errors.graduationYear}
                 />
 
-                <NavigationButton title="Agregar Educación" onPress={handleAdd} />
+                <NavigationButton title="✅ Agregar Educación" onPress={handleAdd} />
 
                 {cvData.education.length > 0 && (
                     <>
@@ -124,7 +159,7 @@ export default function EducationScreen() {
                 )}
 
                 <NavigationButton
-                    title="Volver"
+                    title="◀ Volver"
                     onPress={() => router.back()}
                     variant="secondary"
                     style={{ marginTop: 16 }}
@@ -145,13 +180,13 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 20,
         fontWeight: "bold",
-        color: "#2c3e50",
+        color: "#30319B", // Color personalizado
         marginBottom: 16,
     },
     listTitle: {
         fontSize: 18,
         fontWeight: "600",
-        color: "#2c3e50",
+        color: "#30319B", // Color personalizado
         marginTop: 24,
         marginBottom: 12,
     },
@@ -173,7 +208,7 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: 16,
         fontWeight: "600",
-        color: "#2c3e50",
+        color: "#30319B", // Color personalizado
         marginBottom: 4,
     },
     cardSubtitle: {
@@ -204,4 +239,3 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
 });
-

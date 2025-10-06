@@ -103,54 +103,58 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     header: {
-        borderBottomWidth: 2,
-        borderBottomColor: "#3498db",
-        paddingBottom: 16,
+        borderBottomWidth: 3,
+        borderBottomColor: "#30319bff", // Morado profundo
+        paddingBottom: 20,
         marginBottom: 24,
+        alignItems: "center",
     },
     name: {
-        fontSize: 32,
-        fontWeight: "bold",
-        color: "#2c3e50",
-        marginBottom: 12,
+        fontSize: 34,
+        fontWeight: "700",
+        color: "#30319bff", // Color principal morado
+        marginBottom: 10,
+        textAlign: "center",
     },
     contactInfo: {
-        gap: 4,
+        flexDirection: "row",
+        justifyContent: "center",
+        gap: 20,
+        flexWrap: "wrap",
     },
     contactText: {
         fontSize: 14,
         color: "#7f8c8d",
-        marginBottom: 4,
     },
     section: {
         marginBottom: 24,
     },
     sectionTitle: {
         fontSize: 18,
-        fontWeight: "bold",
-        color: "#3498db",
+        fontWeight: "600",
+        color: "#30319bff", // Morado profundo
         marginBottom: 12,
-        letterSpacing: 1,
+        letterSpacing: 1.2,
     },
     summaryText: {
-        fontSize: 14,
+        fontSize: 15,
         color: "#34495e",
-        lineHeight: 20,
+        lineHeight: 22,
     },
     item: {
-        marginBottom: 16,
-        paddingBottom: 16,
+        marginBottom: 20,
+        paddingBottom: 12,
         borderBottomWidth: 1,
-        borderBottomColor: "#ecf0f1",
+        borderBottomColor: "#30319bff", // Morado profundo
     },
     itemTitle: {
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: "600",
         color: "#2c3e50",
         marginBottom: 4,
     },
     itemSubtitle: {
-        fontSize: 14,
+        fontSize: 15,
         color: "#7f8c8d",
         marginBottom: 4,
     },
@@ -160,15 +164,15 @@ const styles = StyleSheet.create({
         marginBottom: 4,
     },
     itemDate: {
-        fontSize: 12,
+        fontSize: 13,
         color: "#95a5a6",
         fontStyle: "italic",
         marginBottom: 8,
     },
     itemDescription: {
-        fontSize: 13,
+        fontSize: 14,
         color: "#34495e",
-        lineHeight: 18,
+        lineHeight: 20,
     },
     emptyState: {
         flex: 1,
@@ -183,4 +187,3 @@ const styles = StyleSheet.create({
         lineHeight: 24,
     },
 });
-

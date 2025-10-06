@@ -22,10 +22,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.itsdavidd.cvcreatorapp"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a20a8695-434a-4662-8289-9daa163811af"
+      }
     }
   }
 }
